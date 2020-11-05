@@ -1,5 +1,4 @@
 from PIL import Image
-from PIL import Image
 from PIL import ImageColor
 import glob, os
 import shutil, os 
