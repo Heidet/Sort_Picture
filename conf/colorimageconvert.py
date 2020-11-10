@@ -2,11 +2,12 @@ from PIL import Image
 from PIL import ImageColor
 import shutil, os 
 import glob
-
+# r"C:\Users\Antoine Heidet\Desktop\Mes projets\ProjetTrieIcon\icon"
+# r"C:\Users\Antoine Heidet\Desktop\icon"
 class Sort_picture:
-    def __init__(self):
-        self.rootpath = r"C:\Users\Antoine Heidet\Desktop\Mes projets\ProjetTrieIcon\icon"
-        self.remotepath = r"C:\Users\Antoine Heidet\Desktop\icon"
+    def __init__(self,rootpath,remotepath):
+        self.rootpath = rootpath
+        self.remotepath = remotepath
         self.blue = (12, 112, 143),(12, 112, 144),(13, 113, 145),(30, 147, 207),(30, 147, 208),(33, 96, 171),(47, 162, 219),(41, 64, 145),(41, 64, 146),(33, 96, 170),(13, 113, 146),(47, 162, 220),(6, 96, 124),(48, 164, 220),(6, 96, 123)
         self.yellow = (254, 211, 21),(254, 213, 21)
         self.red = (184, 23, 32),(191, 19, 62),(190, 19, 61),(153, 33, 32),(191, 19, 63),(213, 11, 80),(190, 19, 62),(195, 17, 65)
@@ -52,57 +53,47 @@ class Sort_picture:
                 filePath = dirs + "/" + i
                 if os.path.isfile(filePath):
                     os.remove(filePath)
-                # print('ici')
-            # elif os.path.isdir(filePath):
-            #     newFileList = os.listdir(filePath)
-            #     for x in newFileList:
-            #         listfile = filePath + '/' + x
-            #         if os.path.isfile(listfile):
-            #             os.remove(listfile)
-
+                    
     def move_targetpath(self):
         if self.blue:
             for i in self.blue:
                 filelistpath =  r"\bleu"
                 remotepath = self.remotepath + filelistpath
                 self.check_color(self.rootpath, i, remotepath)
-                self.resize(remotepath)
-                self.remove(filelistpath)
+                # self.resize(remotepath)
+                # self.remove(filelistpath)
         if self.green:
             for i in self.green:
                 filelistpath =  r"\vert"
                 remotepath = self.remotepath + filelistpath
                 self.check_color(self.rootpath, i, remotepath)
-                self.resize(remotepath) 
-                self.remove(filelistpath)
+                # self.resize(remotepath) 
+                # # self.remove(filelistpath)
         if self.yellow:
             for i in self.yellow:
                 filelistpath = r"\jaune"
                 remotepath = self.remotepath + filelistpath
                 self.check_color(self.rootpath, i, remotepath)
-                self.resize(remotepath) 
-                self.remove(filelistpath)
+                # self.resize(remotepath) 
+                # self.remove(filelistpath)
         if self.red:
             for i in self.red: 
                 filelistpath = r"\rouge"
                 remotepath = self.remotepath + filelistpath
                 self.check_color(self.rootpath, i, remotepath)
-                self.resize(remotepath) 
-                self.remove(filelistpath)
+                # self.resize(remotepath) 
+                # self.remove(filelistpath)
         if self.orange:
             for i in self.orange: 
                 filelistpath = r"\orange"
                 remotepath = self.remotepath + filelistpath
                 self.check_color(self.rootpath, i, remotepath)
-                self.resize(remotepath)  
-                self.remove(filelistpath)
+                # self.resize(remotepath)  
+                # self.remove(filelistpath)
         if self.purple:
             filelistpath =  r'\violet'
             remotepath = self.remotepath + filelistpath
             self.check_color(self.rootpath, self.purple, remotepath)
-            self.resize(remotepath)
-            self.remove(filelistpath)
+            # self.resize(remotepath)
+            # self.remove(filelistpath)
 
-
-sort_picture = Sort_picture()
-sort_picture.move_targetpath()
