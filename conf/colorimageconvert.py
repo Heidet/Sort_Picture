@@ -34,6 +34,18 @@ class Sort_picture:
                     print('image déplacer')
                     shutil.move(os.path.join(rootpath, listimg[i]), targetpath)
 
+    def resize_auto(self, remotepath):
+        dirs = os.listdir(remotepath)
+        for file in dirs:
+            x = file.endswith('.png')
+            print(x)
+            if x == True: 
+                im = Image.open(os.path.join(remotepath, file))
+                size_small = im.resize((41, 41))
+                size_small.save(os.path.join(remotepath + r'\Petite', file), "PNG")
+                # size_small = im.resize((61, 61))
+                # size_small.save(os.path.join(remotepath + r'\Grande', file), "PNG")
+
     def resize(self, remotepath):
         dirs = os.listdir(remotepath)
         for file in dirs:
@@ -43,8 +55,20 @@ class Sort_picture:
                 im = Image.open(os.path.join(remotepath, file))
                 size_small = im.resize((41, 41))
                 size_small.save(os.path.join(remotepath + r'\Petite', file), "PNG")
-                size_small = im.resize((61, 61))
-                size_small.save(os.path.join(remotepath + r'\Grande', file), "PNG")
+                # size_small = im.resize((61, 61))
+                # size_small.save(os.path.join(remotepath + r'\Grande', file), "PNG")
+
+    def rename(self,rootpath):
+        files = [ f for f in os.listdir(rootpath) if f[-4:].lower() in (".jpg",".png") ] # Pour chaques files si les 4 dernier caractère son .png ou .jpg
+        for index, filename in enumerate(files):
+            extension = os.path.splitext(filename)[1]
+            # print(extension)
+            newname = "picture-%05d%s" % (index,extension)
+            if os.path.exists(newname):
+                print("Cannot rename %s to %s, already exists" % (filename,newname))              
+            else:
+                print("Renaming %s to %s" % (filename,newname))
+                os.rename(os.path.join(rootpath, filename), os.path.join(rootpath, newname))
 
     def remove(self, filelistpath): 
             dirs = self.remotepath + filelistpath
@@ -97,3 +121,6 @@ class Sort_picture:
             # self.resize(remotepath)
             # self.remove(filelistpath)
 
+
+# sort_picture = Sort_picture(rootpath,remotepath)
+# sort_picture.move_targetpath()
